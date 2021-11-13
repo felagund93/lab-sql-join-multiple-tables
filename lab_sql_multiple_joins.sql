@@ -47,7 +47,11 @@ ORDER BY revenue DESC
 LIMIT 5;
 
 #7. Is "Academy Dinosaur" available for rent from Store 1?
-SELECT c.rental_date, c.return_date FROM sakila.film a
+SELECT a.inventory_id, b.title FROM sakila.inventory a
+JOIN sakila.film b ON a.film_id = b.film_id
+WHERE B.title = "Academy Dinosaur"; -- Checking the number of copies that are there in the inventory
+
+SELECT DISTINCT b.inventory_id, c.rental_date, c.return_date FROM sakila.film a
 JOIN sakila.inventory b ON a.film_id = b.film_id
 JOIN sakila.rental c ON b.inventory_id = c.inventory_id
 JOIN sakila.store d ON b.store_id = d.store_id
